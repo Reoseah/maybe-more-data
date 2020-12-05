@@ -1,22 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "maybe-data",
+  "id": "maybe-more-data",
   "version": "${version}",
-  "name": "Maybe data",
-  "description": "I... might need to load this recipe. Not sure.",
+  "name": "Maybe more data",
+  "description": "I... might need to load this recipe. Not sure. ...or this loot table.",
   "authors": [
     "Draylar"
+    "Reoseah"
   ],
   "license": "CC0-1.0",
-  "icon": "assets/maybe-data/icon.png",
+  "icon": "assets/maybe-more-data/icon.png",
   "environment": "*",
   "mixins": [
-    "maybe-data.mixins.json"
+    "maybe-more-data.mixins.json"
   ],
-  "accessWidener": "maybedata.accesswidener",
+  "accessWidener": "maybe-more-data.accesswidener",
   "depends": {
     "fabricloader": ">=0.9.1+build.205",
     "fabric": "*",
-    "minecraft": "~1.16.2"
+    "minecraft": "*"
   }
 }

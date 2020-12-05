@@ -1,4 +1,4 @@
-package draylar.maybedata.data;
+package maybemoredata.data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-import draylar.maybedata.mixin.RecipeManagerAccessor;
+import maybemoredata.mixin.RecipeManagerAccessor;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -20,7 +20,6 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.profiler.Profiler;
 
 public class ConditionalRecipeManager extends RecipeManager {
-
     private final ServerResourceManager manager;
 
     public ConditionalRecipeManager(ServerResourceManager manager) {

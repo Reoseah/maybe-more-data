@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "draylar.maybedata.mixin",
+  "package": "maybemoredata.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "JsonDataLoaderMixin",

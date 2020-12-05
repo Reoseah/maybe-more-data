@@ -1,4 +1,4 @@
-package draylar.maybedata.mixin;
+package maybemoredata.mixin;
 
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;

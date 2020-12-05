@@ -1,4 +1,4 @@
-package draylar.maybedata.mixin;
+package maybemoredata.mixin;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.google.gson.Gson;
 
-import draylar.maybedata.data.ConditionalLootManager;
-import draylar.maybedata.data.ConditionalRecipeManager;
+import maybemoredata.data.ConditionalLootManager;
+import maybemoredata.data.ConditionalRecipeManager;
 import net.minecraft.resource.JsonDataLoader;
 
 @Mixin(JsonDataLoader.class)

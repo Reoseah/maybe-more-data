@@ -1,4 +1,4 @@
-package draylar.maybedata.data;
+package maybemoredata.data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-import draylar.maybedata.mixin.LootManagerAccessor;
+import maybemoredata.mixin.LootManagerAccessor;
 import net.minecraft.loot.LootGsons;
 import net.minecraft.loot.LootManager;
 import net.minecraft.loot.LootTable;

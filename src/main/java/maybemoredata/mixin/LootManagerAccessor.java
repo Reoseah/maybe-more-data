@@ -1,4 +1,4 @@
-package draylar.maybedata.mixin;
+package maybemoredata.mixin;
 
 import java.util.Map;
 

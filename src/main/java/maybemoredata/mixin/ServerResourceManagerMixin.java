@@ -1,4 +1,4 @@
-package draylar.maybedata.mixin;
+package maybemoredata.mixin;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import draylar.maybedata.data.ConditionalLootManager;
-import draylar.maybedata.data.ConditionalRecipeManager;
+import maybemoredata.data.ConditionalLootManager;
+import maybemoredata.data.ConditionalRecipeManager;
 import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.command.CommandManager;

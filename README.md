@@ -38,7 +38,7 @@ Conditional loot table:
   "condition": {
     "block": "mymod:my_optional_block"
   },
-  {
+  "loot_table": {
     "type": "minecraft:block",
     "pools": [
       {

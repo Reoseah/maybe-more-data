@@ -34,8 +34,6 @@ public class ConditionalLootManager extends LootManager {
 
     @Override
     public void apply(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler) {
-        System.out.println("conditional loot manager!");
-
         Map<Identifier, JsonElement> valid = new HashMap<>();
 
         map.forEach((identifier, jsonElement) -> {
@@ -50,9 +48,7 @@ public class ConditionalLootManager extends LootManager {
         });
 
         Map<Identifier, LootTable> existing = ((LootManagerAccessor) this.manager.getLootManager()).getTable();
-        ImmutableMap<Identifier, LootTable> parsed = parse(map);
-
-        System.out.println(parsed);
+        ImmutableMap<Identifier, LootTable> parsed = this.parse(map);
 
         ((LootManagerAccessor) this.manager.getLootManager())
                 .setTable(ImmutableMap.<Identifier, LootTable>builder().putAll(existing).putAll(parsed).build());
@@ -65,7 +61,7 @@ public class ConditionalLootManager extends LootManager {
             Identifier identifier = entry.getKey();
 
             try {
-                LootTable lootTable = (LootTable) GSON.fromJson(entry.getValue(), LootTable.class);
+                LootTable lootTable = GSON.fromJson(entry.getValue(), LootTable.class);
                 builder.put(identifier, lootTable);
             } catch (IllegalArgumentException | JsonParseException exception) {
                 LOGGER.error("Parsing error loading conditional loot table {}", identifier, exception);
@@ -73,6 +69,9 @@ public class ConditionalLootManager extends LootManager {
         }
         ImmutableMap<Identifier, LootTable> tables = builder.build();
         LOGGER.info("Loaded {} conditional loot tables", tables.size());
+        
+        // TODO validate loot tables
+        
         return tables;
     }
 }

@@ -42,8 +42,8 @@ public class ConditionalRecipeManager extends RecipeManager {
         });
 
         // collect original & new recipes
-        Map<RecipeType<?>, Map<Identifier, Recipe<?>>> existing = ((RecipeManagerAccessor) manager.getRecipeManager()).getRecipes();
-        ImmutableMap<? extends RecipeType<?>, ImmutableMap<Identifier, Recipe<?>>> parsed = parse(valid);
+        Map<RecipeType<?>, Map<Identifier, Recipe<?>>> existing = ((RecipeManagerAccessor) this.manager.getRecipeManager()).getRecipes();
+        ImmutableMap<? extends RecipeType<?>, ImmutableMap<Identifier, Recipe<?>>> parsed = this.parse(valid);
         HashMap<RecipeType<?>, Map<Identifier, Recipe<?>>> combined = new HashMap<>();
 
         // add old recipes
@@ -65,7 +65,7 @@ public class ConditionalRecipeManager extends RecipeManager {
         });
 
         // replace current recipe collection
-        ((RecipeManagerAccessor) manager.getRecipeManager()).setRecipes(combined);
+        ((RecipeManagerAccessor) this.manager.getRecipeManager()).setRecipes(combined);
     }
 
     public ImmutableMap<? extends RecipeType<?>, ImmutableMap<Identifier, Recipe<?>>> parse(Map<Identifier, JsonElement> map) {
@@ -76,13 +76,13 @@ public class ConditionalRecipeManager extends RecipeManager {
 
             try {
                 Recipe<?> recipe = deserialize(identifier, JsonHelper.asObject(identifierJsonElementEntry.getValue(), "top element"));
-                recipeMap.computeIfAbsent(recipe.getType(), (recipeType) -> ImmutableMap.builder()).put(identifier, recipe);
+                recipeMap.computeIfAbsent(recipe.getType(), recipeType -> ImmutableMap.builder()).put(identifier, recipe);
             } catch (IllegalArgumentException | JsonParseException var9) {
                 LOGGER.error("Parsing error loading conditional recipe {}", identifier, var9);
             }
         }
 
         LOGGER.info("Loaded {} conditional recipes", recipeMap.size());
-        return recipeMap.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getKey, (entryx) -> (entryx.getValue()).build()));
+        return recipeMap.entrySet().stream().collect(ImmutableMap.toImmutableMap(Map.Entry::getKey, entryx -> entryx.getValue().build()));
     }
 }

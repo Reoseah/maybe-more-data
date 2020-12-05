@@ -19,9 +19,9 @@ public class ServerResourceManagerMixin {
     @Shadow
     @Final
     private ReloadableResourceManager resourceManager;
+
     @Unique
     private ConditionalRecipeManager conditionalRecipeManager;
-
     @Unique
     private ConditionalLootManager conditionalLootManager;
 

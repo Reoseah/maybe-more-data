@@ -11,7 +11,7 @@ version = project.mod_version + "-" + project.minecraft_version
 group = project.maven_group
 
 minecraft {
-    accessWidener "src/main/resources/maybedata.accesswidener"
+    accessWidener "src/main/resources/maybe-more-data.accesswidener"
 }
 
 dependencies {

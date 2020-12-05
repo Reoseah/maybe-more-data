@@ -1,12 +1,15 @@
 package draylar.maybedata.data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+
 import draylar.maybedata.mixin.RecipeManagerAccessor;
-import net.minecraft.loot.LootTable;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -15,9 +18,6 @@ import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.profiler.Profiler;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ConditionalRecipeManager extends RecipeManager {
 
@@ -76,7 +76,8 @@ public class ConditionalRecipeManager extends RecipeManager {
             Identifier identifier = identifierJsonElementEntry.getKey();
 
             try {
-                LootTable table = (LootTable) GSON.fromJson(identifierJsonElementEntry.getValue(), LootTable.class);
+                Recipe<?> recipe = deserialize(identifier, JsonHelper.asObject(identifierJsonElementEntry.getValue(), "top element"));
+                recipeMap.computeIfAbsent(recipe.getType(), (recipeType) -> ImmutableMap.builder()).put(identifier, recipe);
             } catch (IllegalArgumentException | JsonParseException var9) {
                 LOGGER.error("Parsing error loading conditional recipe {}", identifier, var9);
             }

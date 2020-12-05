@@ -5,7 +5,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class Condition {
-
     private String modid = "";
     private String item = "";
 
@@ -15,11 +14,11 @@ public class Condition {
     }
 
     public boolean verify() {
-        if(!modid.isEmpty()) {
+        if (!modid.isEmpty()) {
             return FabricLoader.getInstance().isModLoaded(modid);
         }
 
-        if(!item.isEmpty()) {
+        if (!item.isEmpty()) {
             return Registry.ITEM.getIds().contains(new Identifier(item));
         }
 

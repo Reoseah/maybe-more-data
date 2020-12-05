@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import draylar.maybedata.mixin.RecipeManagerAccessor;
+import net.minecraft.loot.LootTable;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -31,11 +32,11 @@ public class ConditionalRecipeManager extends RecipeManager {
         Map<Identifier, JsonElement> valid = new HashMap<>();
 
         map.forEach((identifier, jsonElement) -> {
-            if(jsonElement instanceof JsonObject) {
+            if (jsonElement instanceof JsonObject) {
                 JsonObject obj = (JsonObject) jsonElement;
 
                 Condition condition = GSON.fromJson(obj.get("condition"), Condition.class);
-                if(condition.verify()) {
+                if (condition.verify()) {
                     valid.put(new Identifier(identifier.getNamespace(), String.format("mayberecipe_%s", identifier.getPath())), obj.get("recipe"));
                 }
             }
@@ -48,7 +49,7 @@ public class ConditionalRecipeManager extends RecipeManager {
 
         // add old recipes
         existing.forEach((recipeType, identifierRecipeMap) -> {
-            if(!combined.containsKey(recipeType)) {
+            if (!combined.containsKey(recipeType)) {
                 combined.put(recipeType, new HashMap<>());
             }
 
@@ -57,7 +58,7 @@ public class ConditionalRecipeManager extends RecipeManager {
 
         // add new recipes
         parsed.forEach((recipeType, identifierRecipeMap) -> {
-            if(!combined.containsKey(recipeType)) {
+            if (!combined.containsKey(recipeType)) {
                 combined.put(recipeType, new HashMap<>());
             }
 
@@ -75,8 +76,7 @@ public class ConditionalRecipeManager extends RecipeManager {
             Identifier identifier = identifierJsonElementEntry.getKey();
 
             try {
-                Recipe<?> recipe = deserialize(identifier, JsonHelper.asObject(identifierJsonElementEntry.getValue(), "top element"));
-                recipeMap.computeIfAbsent(recipe.getType(), (recipeType) -> ImmutableMap.builder()).put(identifier, recipe);
+                LootTable table = (LootTable) GSON.fromJson(identifierJsonElementEntry.getValue(), LootTable.class);
             } catch (IllegalArgumentException | JsonParseException var9) {
                 LOGGER.error("Parsing error loading conditional recipe {}", identifier, var9);
             }

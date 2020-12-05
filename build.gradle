@@ -50,7 +50,7 @@ jar {
 	}
 }
 
-/ configure the maven publication
+// configure the maven publication
 publishing {
     publications {
         mavenJava(MavenPublication) {

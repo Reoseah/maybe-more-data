@@ -16,18 +16,12 @@ public class Condition {
     }
 
     public boolean verify() {
-        if (!modid.isEmpty()) {
-            return FabricLoader.getInstance().isModLoaded(modid);
-        }
+        boolean matched = true;
 
-        if (!item.isEmpty()) {
-            return Registry.ITEM.getIds().contains(new Identifier(item));
-        }
+        matched &= this.modid.isEmpty() || FabricLoader.getInstance().isModLoaded(this.modid);
+        matched &= this.item.isEmpty() || Registry.ITEM.getIds().contains(new Identifier(this.item));
+        matched &= this.block.isEmpty() || Registry.BLOCK.getIds().contains(new Identifier(this.block));
 
-        if (!block.isEmpty()) {
-            return Registry.BLOCK.getIds().contains(new Identifier(item));
-        }
-
-        return false;
+        return matched;
     }
 }

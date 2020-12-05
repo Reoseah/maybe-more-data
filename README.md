@@ -1,3 +1,7 @@
+# Maybe More Data
+
+Fork of Draylar's Maybe Data lib, with intention of adding optional loot tables and maybe more in the future. Why? Just think of something like a gravel ore mod.
+
 # Maybe Data
 
 Maybe Data is a super simple, lightweight library that allows you to conditionally load recipes. 

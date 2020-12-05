@@ -2,40 +2,65 @@
 
 Fork of Draylar's Maybe Data lib, with intention of adding optional loot tables and maybe more in the future. Why? Just think of something like a gravel ore mod.
 
-# Maybe Data
+## Usage
 
-Maybe Data is a super simple, lightweight library that allows you to conditionally load recipes. 
+Add this to your mod using jitpack or something.
 
-Maybe Data will *only* attempt to load when the mod is installed (= a mod bundles Maybe Data), and when the condition at the top of the recipe file is met. Here's an example:
+Example of conditional recipe:
 
-`resources/data/modid/mayberecipes/golden_apple.json`
+`data/<modid>/conditional_recipes`
+
 ```json
 {
   "condition": {
-    "modid": "moreapples"
+    "modid": "minecraft"
   },
   "recipe": {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-      "###",
-      "#X#",
-      "###"
-    ],
-    "key": {
-      "#": {
-        "item": "minecraft:diamond"
-      },
-      "X": {
-        "item": "minecraft:apple"
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "minecraft:redstone"
       }
-    },
+    ],
     "result": {
-      "item": "minecraft:golden_apple"
+      "item": "minecraft:diamond"
     }
   }
 }
 ```
 
-This recipe will only load when Maybe Data is installed (More Apples / another mod might JIJ it), and when the `moreapples` modid exists. Simple, right?
+Conditional loot table:
 
-Looking for more conditional control? Check out [LibCD](https://github.com/cottonmc/LibCD). This mod is MIT and built for the Fabric Loader.
+`data/<modid>/conditional_loot_tables`
+
+```json
+{
+  "condition": {
+    "block": "mymod:my_optional_block"
+  },
+  {
+    "type": "minecraft:block",
+    "pools": [
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "mymod:my_optional_block"
+          }
+        ],
+        "conditions": [
+          {
+            "condition": "minecraft:survives_explosion"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Supported conditions:
+- `modid` (string)
+- `item` (identifier)
+- `block` (identifier)

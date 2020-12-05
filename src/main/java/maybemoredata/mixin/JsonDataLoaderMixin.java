@@ -24,10 +24,10 @@ public class JsonDataLoaderMixin {
     @Inject(method = "<init>", at = @At("RETURN"))
     private void modifyS(Gson gson, String dataType, CallbackInfo ci) {
         if ((Object) this instanceof ConditionalRecipeManager) {
-            this.dataType = "mayberecipes";
+            this.dataType = "conditional_recipes";
         }
         if ((Object) this instanceof ConditionalLootManager) {
-            this.dataType = "maybeloot_tables";
+            this.dataType = "conditional_loot_tables";
         }
     }
 }

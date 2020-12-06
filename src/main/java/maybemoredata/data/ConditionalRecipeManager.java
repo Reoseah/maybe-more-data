@@ -36,7 +36,7 @@ public class ConditionalRecipeManager extends RecipeManager {
 
                 Condition condition = GSON.fromJson(obj.get("condition"), Condition.class);
                 if (condition.verify()) {
-                    valid.put(new Identifier(identifier.getNamespace(), String.format("mayberecipe_%s", identifier.getPath())), obj.get("recipe"));
+                    valid.put(identifier, obj.get("recipe"));
                 }
             }
         });

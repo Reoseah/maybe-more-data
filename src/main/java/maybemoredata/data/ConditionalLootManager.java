@@ -48,7 +48,7 @@ public class ConditionalLootManager extends LootManager {
         });
 
         Map<Identifier, LootTable> existing = ((LootManagerAccessor) this.manager.getLootManager()).getTable();
-        ImmutableMap<Identifier, LootTable> parsed = this.parse(map);
+        ImmutableMap<Identifier, LootTable> parsed = this.parse(valid);
 
         ((LootManagerAccessor) this.manager.getLootManager())
                 .setTable(ImmutableMap.<Identifier, LootTable>builder().putAll(existing).putAll(parsed).build());

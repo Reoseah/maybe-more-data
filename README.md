@@ -8,7 +8,7 @@ Add this to your mod using jitpack or something.
 
 Example of conditional recipe:
 
-`data/<modid>/conditional_recipes`
+`data/<modid>/conditional_recipes/<name>.json`
 
 ```json
 {
@@ -31,7 +31,7 @@ Example of conditional recipe:
 
 Conditional loot table:
 
-`data/<modid>/conditional_loot_tables`
+`data/<modid>/conditional_loot_tables/blocks/<name>.json`
 
 ```json
 {
